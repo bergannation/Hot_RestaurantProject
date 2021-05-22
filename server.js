@@ -6,21 +6,14 @@ const path = require("path");
 // Sets up the Express App
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 8080;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Star Wars Characters (DATA)
-const tables = [
-  {
-    name: "Travis",
-    phone: "1322342523",
-    email: "test@test.com",
-    customerID: 1,
-  },
-];
+const tables = [];
 const waitingList = [];
 
 // Routes
@@ -43,7 +36,7 @@ router.get("/api/waitlist", (req, res) => res.json(waitingList));
 
 app.use(router);
 // Create New Characters - takes in JSON input
-app.post("/api/reserve", (req, res) => {
+app.post("/api/tables", (req, res) => {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   const newReservation = req.body;

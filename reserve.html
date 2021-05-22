@@ -12,6 +12,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
 
   <body>
@@ -84,21 +85,17 @@
           event.preventDefault();
 
           let newReservation = {
-            customerName: $("#reserve-name").val().trim(),
-            phoneNumber: $("#reserve-phone").val().trim(),
-            customerEmail: $("#reserve-email").val().trim(),
+            name: $("#reserve-name").val().trim(),
+            phone: $("#reserve-phone").val().trim(),
+            email: $("#reserve-email").val().trim(),
             customerID: $("#reserve-unique-id").val().trim(),
           };
 
           console.log(newReservation);
 
-          $.post("/api/tables", newReservation, function (data) {
-            if (data) {
-              alert("Yay! You are officially booked!");
-            } else {
-              alert("Sorry you are on the wait list");
-            }
-
+          $.post("/api/tables", newReservation).then(function (res) {
+            console.log(res + "hello");
+            //
             $("#reserve-name").val("");
             $("#reserve-phone").val("");
             $("#reserve-email").val("");

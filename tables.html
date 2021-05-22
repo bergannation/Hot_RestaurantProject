@@ -12,6 +12,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
 
   <body>
@@ -68,8 +69,12 @@
       <footer class="footer mt-4">
         <div class="container">
           <p>
-            <a href="#" id="clear">Clear Table</a> |
-            <a href="/api/tables">API Table Link</a> |
+            <a href="#"
+              ><button class="btn btn-lg btn-danger" id="clear">
+                <span class="fa">Clear</span>
+              </button></a
+            >
+            | <a href="/api/tables">API Table Link</a> |
             <a href="/api/waitlist">API Wait List</a>
           </p>
         </div>
@@ -93,9 +98,9 @@
               $("<h2>").text("Table #" + (i + 1)),
               $("<hr>"),
               $("<h2>").text("ID: " + tableData[i].customerID),
-              $("<h2>").text("Name: " + tableData[i].customerName),
-              $("<h2>").text("Email: " + tableData[i].customerEmail),
-              $("<h2>").text("Phone: " + tableData[i].phoneNumber)
+              $("<h2>").text("Name: " + tableData[i].name),
+              $("<h2>").text("Email: " + tableData[i].email),
+              $("<h2>").text("Phone: " + tableData[i].phone)
             );
 
             tableList.append(listItem);
@@ -119,15 +124,17 @@
               $("<h2>").text("Table #" + (i + 1)),
               $("<hr>"),
               $("<h2>").text("ID: " + waitData[i].customerID),
-              $("<h2>").text("Name: " + waitData[i].customerName),
-              $("<h2>").text("Email: " + waitData[i].customerEmail),
-              $("<h2>").text("Phone: " + waitData[i].phoneNumber)
+              $("<h2>").text("Name: " + waitData[i].name),
+              $("<h2>").text("Email: " + waitData[i].email),
+              $("<h2>").text("Phone: " + waitData[i].phone)
             );
 
             waitList.append(listItem);
           }
         });
       }
+
+      // $("#clear").on('click', ".clearReservation", function(){}
 
       runTable();
       runWaitList();
